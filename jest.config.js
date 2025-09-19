@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
 	rootDir: path.resolve(__dirname),
 	preset: 'ts-jest',
-	testEnvironment: '<rootDir>/test/setup/jest-node-env-with-globalthis.js',
+	testEnvironment: 'node',
 	transform: {
 		'^.+\\.(t|j)s$': [
 			'ts-jest',
