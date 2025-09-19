@@ -13,9 +13,6 @@ module.exports = {
 		],
 	},
 	transformIgnorePatterns: ['<rootDir>/node_modules/'],
-	moduleNameMapper: {
-		uuid: require.resolve('uuid'),
-	},
 	globalSetup: '<rootDir>/test/setup/setup.ts',
 	testTimeout: 100000,
 }

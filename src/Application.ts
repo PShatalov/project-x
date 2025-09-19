@@ -9,15 +9,25 @@ import { engine } from 'express-handlebars';
 import path from 'node:path'
 import { Express } from 'express-serve-static-core'
 import { Container, interfaces } from 'inversify'
+import type { Request, Response } from 'express';
 
+
+export interface IApplicationOptions {
+	container?: interfaces.Container;
+}
+interface AppError extends Error {
+	statusCode?: number;
+	payload?: Record<string, unknown>;
+	code?: string | number;
+  }
 export class Application {
 
-	private expressApp: Express
-	private inversifyServer: InversifyExpressServer
+	private expressApp!: Express
+	private inversifyServer!: InversifyExpressServer
 	private container: Container | interfaces.Container
 
 	constructor(options: IApplicationOptions = {}) {
-		this.container = options.container || null
+		this.container = options.container || createContainer()
 	}
 
 	public async init(){
@@ -60,7 +70,7 @@ export class Application {
 			})
 			.setErrorConfig(app => {
 
-				app.use((e, _req, res, _next) => {
+				app.use((e: AppError, _req: Request, res: Response) => {
 
 					res.status(e.statusCode || 500).json({
 						error: {
@@ -83,8 +93,8 @@ export class Application {
 
 	}
 
-	public listen(...args){
-		this.expressApp.listen(...args)
+	public listen(port: number, cb: () => void){
+		this.expressApp.listen(port, cb)
 	}
 
 	public getExpressApp(){
@@ -95,9 +105,5 @@ export class Application {
 		return this.container
 	}
 
-}
-
-export interface IApplicationOptions {
-	container?: any
 }
 

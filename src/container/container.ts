@@ -25,11 +25,11 @@ export const createContainer = (options: ICreateContainerOptions = {}) => {
 			container.unbind(serviceIdentifier)
 		}
 
-		if(options.overrides[serviceIdentifier].toConstantValue){
+		if(options.overrides && options.overrides[serviceIdentifier].toConstantValue){
 			container.bind(serviceIdentifier).toConstantValue(options.overrides[serviceIdentifier].toConstantValue)
 		}
 
-		if(options.overrides[serviceIdentifier].to){
+		if(options.overrides && options.overrides[serviceIdentifier].to){
 			container.bind(serviceIdentifier).to(options.overrides[serviceIdentifier].to)
 		}
 

@@ -12,6 +12,7 @@ export const setup = async () => {
 	})
 
 	await app.init()
+	// @ts-expect-error instance type incompatibility
 	globalThis.request = supertest.agent(app.getExpressApp())
 
 }

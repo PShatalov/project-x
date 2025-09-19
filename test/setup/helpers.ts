@@ -3,6 +3,7 @@ import { createContainer, IContainerOverrides } from '../../src/container/contai
 import { Container } from 'inversify'
 import { SuperAgent } from 'superagent'
 import supertest from 'supertest'
+import { type Express as ExpressApp } from 'express';
 
 export const createRequest = async (options: ICreateRequestOptions = {}): Promise<SuperAgent<any>> => {
 
@@ -13,6 +14,8 @@ export const createRequest = async (options: ICreateRequestOptions = {}): Promis
 
 	const application = new Application({ container })
 	await application.init()
+
+	// @ts-expect-error instance type incompatibility
 	return getSupertestInstance(application.getExpressApp())
 
 }
@@ -27,7 +30,7 @@ export interface ICreateRequestOptions {
 	container?: Container,
 }
 
-export const getSupertestInstance = (app) => {
+export const getSupertestInstance = (app: ExpressApp) => {
 	return supertest.agent(app)
 }
 

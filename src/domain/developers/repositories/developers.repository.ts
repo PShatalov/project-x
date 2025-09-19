@@ -13,7 +13,7 @@ export class DevelopersRepository {
 		return developers
 	}
 
-	async getDeveloperById(id: string): Promise<IDeveloper>{
+	async getDeveloperById(id: string): Promise<IDeveloper | undefined>{
 		return developers.find(d => d.id === id)
 	}
 

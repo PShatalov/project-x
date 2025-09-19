@@ -28,7 +28,7 @@ export class DevelopersController extends BaseHttpController implements interfac
 
 	@httpGet('/:id')
 	@ApiOperationGet(getDeveloperById)
-	public async getDeveloperById(@requestParam('id') id: string): Promise<DeveloperDto> {
+	public async getDeveloperById(@requestParam('id') id: string): Promise<DeveloperDto | undefined> {
 		return this.developersService.getDeveloperById(id)
 	}
 
