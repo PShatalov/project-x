@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-	  "target": "es2020",
+	  "target": "es2022",
 	  "module": "commonjs",
 	  "esModuleInterop": true,
 	  "moduleResolution": "node",
@@ -14,7 +14,7 @@
 	  "inlineSourceMap": true,
 	  "noUnusedLocals": true,
 	  "noUnusedParameters": true,
-	  "lib": ["es2020"]
+	  "lib": ["es2022"]
 	},
 	"include": ["src", "test"],
   }
