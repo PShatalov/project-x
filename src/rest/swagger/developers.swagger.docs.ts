@@ -1,12 +1,11 @@
-import { IApiOperationArgsBase } from 'swagger-express-ts/i-api-operation-args.base'
-import { IApiPathArgs } from 'swagger-express-ts/api-path.decorator'
+import { IApiOperationGetArgs, IApiPathArgs } from 'swagger-express-ts'
 
 export const path: IApiPathArgs = {
 	path: "/api/developers",
 	name: "Developers",
 }
 
-export const getDevelopers: IApiOperationArgsBase = {
+export const getDevelopers: IApiOperationGetArgs = {
 	summary: "Get full list of developers (used by developers management dashboard and contracts management dashboard)",
 	path: '/',
 	parameters: {
@@ -19,11 +18,11 @@ export const getDevelopers: IApiOperationArgsBase = {
 	},
 }
 
-export const getDeveloperById: IApiOperationArgsBase = {
+export const getDeveloperById: IApiOperationGetArgs = {
 	summary: "Get developer by id (used by contracts management dashboard)",
 	path: '/{id}',
 	parameters: {
-		path: { id: { required: true, name: 'id', description: 'Developer id' } },
+		path: { id: { required: true, description: 'Developer id' } },
 	},
 	responses: {
 		200: {

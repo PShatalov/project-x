@@ -52,7 +52,7 @@ export class Application {
 				app.use('/api-docs/swagger', express.static('swagger'))
 				app.use('/api-docs/swagger/assets', express.static('node_modules/swagger-ui-dist'))
 				app.use(swagger.express(
-					{ definition: generalDoc }
+					{ ...generalDoc }
 				))
 				app.get('/api-docs/swagger', (_req, res) => {
 					res.render('swagger')
