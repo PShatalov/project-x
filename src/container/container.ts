@@ -1,18 +1,18 @@
 import { Container } from 'inversify'
 import _ from 'lodash'
 
-import { DevelopersService } from '../domain/developers/services/developers.service'
-import { DevelopersRepository } from '../domain/developers/repositories/developers.repository'
+import { DevelopersRepository } from '@domain/developers/repositories/developers.repository'
+import { DevelopersService } from '@domain/developers/services/developers.service'
 
 // REST API Controllers
-import '../rest/controllers/developers.controller'
-
+import '@rest/controllers/developers.controller'
 // Swagger Dto
-import '../rest/dto/developers.responses.dto'
+import '@rest/dto/developers.responses.dto'
 
 export const createContainer = (options: ICreateContainerOptions = {}) => {
 
-	let container = new Container()
+	
+	const container = new Container()
 
 	// Services
 	container.bind<DevelopersService>('DevelopersService').to(DevelopersService)

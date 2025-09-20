@@ -1,9 +1,11 @@
-import { Application } from '../../src/Application'
-import { createContainer, IContainerOverrides } from '../../src/container/container'
 import { Container } from 'inversify'
 import { SuperAgent } from 'superagent'
 import supertest from 'supertest'
-import { type Express as ExpressApp } from 'express';
+
+import { Application } from '@app/Application'
+import { createContainer, IContainerOverrides } from '@app/container/container'
+
+import type {Express as ExpressApp} from 'express';
 
 export const createRequest = async (options: ICreateRequestOptions = {}): Promise<SuperAgent<any>> => {
 

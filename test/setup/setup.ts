@@ -1,19 +1,19 @@
+import dotenv from 'dotenv'
 import 'reflect-metadata'
-import { Application } from '../../src/Application'
-import { createContainer } from '../../src/container/container'
 import supertest from 'supertest'
 
-require('dotenv').config()
+import { Application } from '@app/Application'
+import { createContainer } from '@app/container/container'
 
-export const setup = async () => {
+dotenv.config({path: '../../.env.test'})
 
+void (async () => {
 	const app = new Application({
-		container: createContainer()
-	})
-
-	await app.init()
-	// @ts-expect-error instance type incompatibility
-	globalThis.request = supertest.agent(app.getExpressApp())
-
-}
-export default setup
+	  container: createContainer(),
+	});
+  
+	await app.init();
+  
+	// @ts-expect-error augment global
+	globalThis.request = supertest.agent(app.getExpressApp());
+  })();

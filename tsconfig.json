@@ -1,21 +1,26 @@
 {
-	"compilerOptions": {
-	  "target": "es2022",
-	  "module": "commonjs",
-	  "esModuleInterop": true,
-	  "moduleResolution": "node",
-	  "outDir": "dist",
-	  "rootDir": "./",
-	  "strict": true,
-	  "experimentalDecorators": true,
-	  "emitDecoratorMetadata": true,
-	  "strictPropertyInitialization": false,
-	  "resolveJsonModule": true,
-	  "inlineSourceMap": true,
-	  "noUnusedLocals": true,
-	  "noUnusedParameters": true,
-	  "lib": ["es2022"]
-	},
-	"include": ["src", "test"],
-  }
-  
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "inlineSourceMap": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "lib": ["es2022"],
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["*"],
+	  "@domain/*": ["domain/*"],
+	  "@rest/*": ["rest/*"]
+    }
+  },
+  "include": ["src"]
+}

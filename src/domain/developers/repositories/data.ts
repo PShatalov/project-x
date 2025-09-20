@@ -1,4 +1,4 @@
-import { IDeveloper } from '../types'
+import { IDeveloper } from '@domain/developers/types'
 
 export const contracts = [
 	{ id: 1, developerId: '65de3467255f31cb84bd071d', status: 'pending', amount: 5000 },

@@ -1,16 +1,20 @@
-import 'reflect-metadata'
-import express from 'express'
-import bodyParser from 'body-parser'
-import { InversifyExpressServer } from 'inversify-express-utils'
-import { createContainer } from './container/container'
-import * as swagger from 'swagger-express-ts'
-import { generalDoc } from './rest/swagger/general.docs'
-import { engine } from 'express-handlebars';
+
 import path from 'node:path'
+
+import bodyParser from 'body-parser'
+import express from 'express'
+import { engine } from 'express-handlebars';
 import { Express } from 'express-serve-static-core'
 import { Container, interfaces } from 'inversify'
-import type { Request, Response } from 'express';
+import { InversifyExpressServer } from 'inversify-express-utils'
+import 'reflect-metadata'
+import * as swagger from 'swagger-express-ts'
 
+import { createContainer } from '@app/container/container'
+
+import { generalDoc } from '@rest/swagger/general.docs'
+
+import type { Request, Response } from 'express';
 
 export interface IApplicationOptions {
 	container?: interfaces.Container;
@@ -44,8 +48,10 @@ export class Application {
 	private initExpressApp(){
 		const app = express()
 		app.all('*', (req, _res, next) => {
-			//@ts-ignore
-			req.container = this.container
+			Object.defineProperty(req, 'container', {
+				value: this.container,
+				writable: false
+			})
 			next()
 		})
 

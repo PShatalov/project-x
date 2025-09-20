@@ -3,8 +3,9 @@
 // **************************************************************************
 
 import { injectable } from 'inversify';
-import { IDeveloper } from '../types'
-import { contracts, developers } from './data'
+
+import { contracts, developers } from '@domain/developers/repositories/data'
+import { IDeveloper } from '@domain/developers/types'
 
 @injectable()
 export class DevelopersRepository {
